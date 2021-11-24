@@ -2,10 +2,10 @@ package maze;
 
 public class maze_5x5 {
 	public int[][] maze_info() {
-		Node[] n = new Node[12]; // 총 12개의 node
+		Node[] n = new Node[12]; // 총 13개의 node
 		for (int i = 0; i < n.length; i++) {
 			n[i] = new Node();
-			n[i].setData("n-" + i); // node 0번부터 12번까지 할당
+			n[i].setData(i); // node 0번부터 12번까지 할당
 		}
 
 		/*
@@ -14,7 +14,7 @@ public class maze_5x5 {
          * N11 => Goal
          *
           
-         X     X     X  -  9  -  X
+         X     X     X     9     X
                            |  
          0  -  1     X  -  8     X
                |           |    
@@ -54,12 +54,15 @@ public class maze_5x5 {
 		
 		coordinate[1][0] = 2;
 		coordinate[4][4] = 3;
+
+		/*
 		for (int i = 0; i < 5; i++) { // 출력
 			for (int j = 0; j < 5; j++) {
 				System.out.print(coordinate[i][j] + " ");
 			}
 			System.out.println(" ");
 		}
+		*/
 
 		// 각 node의 neighbor node에 대한 정보 입력 - 옆으로 이동하기 위함, 경로 표시
 		n[0].addNeighbors(n[1]);
@@ -75,7 +78,9 @@ public class maze_5x5 {
 		n[10].addNeighbors(n[6], n[11]);
 		n[11].addNeighbors(n[10]);
 
-		new A_star_algorithm().search(n[0], n[11]); // 출발 node부터 도착 node까지의 최단 경로를 구함
+		new A_star_algorithm().search(n[0], n[11], 5); // 출발 node부터 도착 node까지의 최단 경로를 구함
+		
 		return coordinate;
+		
 	}
 }

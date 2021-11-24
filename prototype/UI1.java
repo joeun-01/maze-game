@@ -1,4 +1,4 @@
-package algorithms_maze;
+package maze;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -11,11 +11,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-public class main2 extends JFrame {
+@SuppressWarnings("serial")
+public class UI1 extends JFrame {
 	
 	private JPanel panel1, panel2, panel3;
 	
-	public main2() {
+	public UI1() {
 		JFrame newFrame = new JFrame();
 		newFrame.setTitle("MAZE");
 		newFrame.setSize(500, 500);
@@ -35,8 +36,8 @@ public class main2 extends JFrame {
 		panel1.addKeyListener(new KeyListener() {
 
 			void Wincheck() {
-				if(INIT.xpos == 5 && INIT.ypos == 8) { // x ÀÇ À§Ä¡ 5Çà 8 ¿­
-					JOptionPane.showMessageDialog(null, "Å»Ãâ¼º°ø");
+				if(INIT.xpos == 5 && INIT.ypos == 8) { // x Ã€Ã‡ Ã€Â§Ã„Â¡ 5Ã‡Ã  8 Â¿Â­
+					JOptionPane.showMessageDialog(null, "Ã…Â»ÃƒÃ¢Â¼ÂºÂ°Ã¸");
 					System.exit(0);
 				}
 			}

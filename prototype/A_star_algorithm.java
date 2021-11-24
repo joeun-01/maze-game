@@ -1,4 +1,4 @@
-package algorithms_maze;
+package maze;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -8,12 +8,12 @@ import java.util.PriorityQueue;
 
 public class A_star_algorithm {
 
-    private PriorityQueue<Node> openList;  // ¾ÕÀ¸·Î ¹æ¹®ÇØ¾ßÇÒ node
-    private ArrayList<Node> closedList;  // Á¦¿Ü½ÃÅ² node
-    HashMap<Node, Integer> gMaps;  // ÇöÀç node±îÁöÀÇ ÃÖ´Ü°Å¸®(ºñ¿ë)
-    HashMap<Node, Integer> fMaps;  // g(x) + h(x)ÀÎ ÃÖ´Ü°Å¸®, ÀÌ¶§ h(x)´Â ÇöÀç node¿¡¼­ ¸ñÇ¥ node·Î °¡´Â ÃßÁ¤ ÃÖ´Ü°Å¸®
+    private PriorityQueue<Node> openList;  // ì•ìœ¼ë¡œ ë°©ë¬¸í•´ì•¼í•  node
+    private ArrayList<Node> closedList;  // ì œì™¸ì‹œí‚¨ node
+    HashMap<Node, Integer> gMaps;  // í˜„ì¬ nodeê¹Œì§€ì˜ ìµœë‹¨ê±°ë¦¬(ë¹„ìš©)
+    HashMap<Node, Integer> fMaps;  // g(x) + h(x)ì¸ ìµœë‹¨ê±°ë¦¬, ì´ë•Œ h(x)ëŠ” í˜„ì¬ nodeì—ì„œ ëª©í‘œ nodeë¡œ ê°€ëŠ” ì¶”ì • ìµœë‹¨ê±°ë¦¬
     private int initialCapacity = 100;
-    private int distanceBetweenNodes = 1;  // node°£ÀÇ °Å¸®´Â 1
+    private int distanceBetweenNodes = 1;  // nodeê°„ì˜ ê±°ë¦¬ëŠ” 1
 
     public A_star_algorithm() {
         gMaps = new HashMap<Node, Integer>();
@@ -22,26 +22,26 @@ public class A_star_algorithm {
         closedList = new ArrayList<Node>();
     }
 
-    public void search(Node start, Node end) {  // startºÎÅÍ end±îÁöÀÇ ÃÖ´Ü °æ·Î ±¸ÇÏ±â
-        openList.clear();  // openlist, closedlist ÃÊ±âÈ­
+    public void search(Node start, Node end, int size) {  // startë¶€í„° endê¹Œì§€ì˜ ìµœë‹¨ ê²½ë¡œ êµ¬í•˜ê¸°
+        openList.clear();  // openlist, closedlist ì´ˆê¸°í™”
         closedList.clear();
 
-        gMaps.put(start, 0);  // ½ÃÀÛÁ¡ ÀÔ·Â
-        openList.add(start);  // openlist¿¡ ½ÃÀÛÁ¡À» ³Ö¾îÁÜÀ¸·Î½á neighbor node·Î °¡¸ç ÃÖ´Ü°æ·Î Å½»ö ½ÃÀÛ
+        gMaps.put(start, 0);  // ì‹œì‘ì  ì…ë ¥
+        openList.add(start);  // openlistì— ì‹œì‘ì ì„ ë„£ì–´ì¤Œìœ¼ë¡œì¨ neighbor nodeë¡œ ê°€ë©° ìµœë‹¨ê²½ë¡œ íƒìƒ‰ ì‹œì‘
 
-        while (!openList.isEmpty()) {  // °¥ ¼ö ÀÖ´Â ¸ğµç node¸¦ Áö³ª°¥ ¶§±îÁö = openlist°¡ empty°¡ µÉ ¶§±îÁö
-            Node current = openList.element();  // ÇöÀç node¸¦ openlist¿¡ ³Ö¾îÁÜ
-            if (current.equals(end)) {  // ÇöÀç node°¡ end nodeÀÌ¸é search Á¾·á
+        while (!openList.isEmpty()) {  // ê°ˆ ìˆ˜ ìˆëŠ” ëª¨ë“  nodeë¥¼ ì§€ë‚˜ê°ˆ ë•Œê¹Œì§€ = openlistê°€ emptyê°€ ë  ë•Œê¹Œì§€
+            Node current = openList.element();  // í˜„ì¬ nodeë¥¼ openlistì— ë„£ì–´ì¤Œ
+            if (current.equals(end)) {  // í˜„ì¬ nodeê°€ end nodeì´ë©´ search ì¢…ë£Œ
                 System.out.println("Goal Reached");
-                printPath(current);  // current nodeºÎÅÍ backtracking
+                printPath(current, size);  // current nodeë¶€í„° backtracking
                 return;
             }
-            closedList.add(openList.poll());  // ¹æºĞÇÑ node(arraylistÀÇ ¸Ç ¾Õ node)¸¦ openlist¿¡¼­ »©ÁÖ°í closedlist¿¡ ³Ö¾îÁØ´Ù
+            closedList.add(openList.poll());  // ë°©ë¶„í•œ node(arraylistì˜ ë§¨ ì• node)ë¥¼ openlistì—ì„œ ë¹¼ì£¼ê³  closedlistì— ë„£ì–´ì¤€ë‹¤
             ArrayList<Node> neighbors = current.getNeighbors();  // neighbor node get
 
             for (Node neighbor : neighbors) {
-                int gScore = gMaps.get(current) + distanceBetweenNodes;  // ÇöÀç node±îÁöÀÇ °Å¸®¿Í ´ÙÀ½ node±îÁöÀÇ °Å¸®¸¦ ´õÇØÁÜ
-                int fScore = gScore + h(neighbor, current);  // neighbor node·Î °¬À» ¶§ÀÇ ¿¹»ó °Å¸®¸¦ ´õÇØÁÜ?
+                int gScore = gMaps.get(current) + distanceBetweenNodes;  // í˜„ì¬ nodeê¹Œì§€ì˜ ê±°ë¦¬ì™€ ë‹¤ìŒ nodeê¹Œì§€ì˜ ê±°ë¦¬ë¥¼ ë”í•´ì¤Œ
+                int fScore = gScore + h(neighbor, current);  // neighbor nodeë¡œ ê°”ì„ ë•Œì˜ ì˜ˆìƒ ê±°ë¦¬ë¥¼ ë”í•´ì¤Œ?
 
                 if (closedList.contains(neighbor)) {
 
@@ -70,22 +70,41 @@ public class A_star_algorithm {
         System.out.println("FAIL");
     }
 
-    private int h(Node node, Node goal) {  // ÈŞ¸®½ºÆ½ ÇÔ¼ö
+    private int h(Node node, Node goal) {  // íœ´ë¦¬ìŠ¤í‹± í•¨ìˆ˜
         int x = node.getX() - goal.getX();
         int y = node.getY() - goal.getY();
         return x * x + y * y;
     }
 
-    private void printPath(Node node) {  // backtracking
-        System.out.println(node.getData());
+    private int[][] printPath(Node node, int size) {  // backtracking
+    	int[][] path = new int[size][size];
+    	
+    	for(int i = 0; i < size; i++) {
+    		for(int j = 0; j < size; j++) {
+    			path[i][j] = 1;
+    		}
+    	}
+    	
+    	path[node.getY()][node.getX()] = 0;
+        //System.out.println(node.getData());
 
         while (node.getParent() != null) {
             node = node.getParent();
-            System.out.println(node.getData());
+            path[node.getY()][node.getX()] = 0;
+            //System.out.println(node.getData());
         }
+        
+        for(int i = 0; i < size; i++) {
+    		for(int j = 0; j < size; j++) {
+    			System.out.print(path[i][j] + " ");
+    		}
+    		System.out.println();
+    	}
+        
+        return path;
     }
 
-    class fCompare implements Comparator<Node> {  // ¾îµğ·Î °¡´Â °Ô ÃÖ´Ü°æ·ÎÀÎÁö ºñ±³
+    class fCompare implements Comparator<Node> {  // ì–´ë””ë¡œ ê°€ëŠ” ê²Œ ìµœë‹¨ê²½ë¡œì¸ì§€ ë¹„êµ
 
         public int compare(Node o1, Node o2) {
             if (fMaps.get(o1) < fMaps.get(o2)) {

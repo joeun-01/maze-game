@@ -19,7 +19,7 @@ public class maze_10x10 {
 		 * 
 		 */
 
-		// °¢ nodeÀÇ ÁÂÇ¥ ¼³Á¤
+		// ê° nodeì˜ ì¢Œí‘œ ì„¤ì •
 		n[0].setXY(0, 0);
 		n[1].setXY(0, 1);
 		n[2].setXY(0, 2);
@@ -86,7 +86,7 @@ public class maze_10x10 {
 		n[54].setXY(9, 4);
 		n[55].setXY(9, 9);
 
-		int[][] coordinate = new int[10][10]; // ¹Ì·Î ¹è¿­·Î ³ªÅ¸³»±â
+		int[][] coordinate = new int[10][10]; // ë¯¸ë¡œ ë°°ì—´ë¡œ ë‚˜íƒ€ë‚´ê¸°
 
 		for (int i = 0; i < 10; i++) {
 			for (int j = 0; j < 10; j++) {
@@ -95,17 +95,20 @@ public class maze_10x10 {
 		}
 
 		for (int i = 0; i < 56; i++) {
-			coordinate[n[i].getY()][n[i].getX()] = 0; // ±æÀ» 0À¸·Î Ç¥½Ã
+			coordinate[n[i].getY()][n[i].getX()] = 0; // ê¸¸ì„ 0ìœ¼ë¡œ í‘œì‹œ
 		}
+		
+		coordinate[0][0] = 2;
+		coordinate[9][9] = 3;
 
-		for (int i = 0; i < 10; i++) { // Ãâ·Â
+		for (int i = 0; i < 10; i++) { // ì¶œë ¥
 			for (int j = 0; j < 10; j++) {
 				System.out.print(coordinate[i][j] + " ");
 			}
 			System.out.println(" ");
 		}
 
-		// °¢ nodeÀÇ neighbor node¿¡ ´ëÇÑ Á¤º¸ ÀÔ·Â - ¿·À¸·Î ÀÌµ¿ÇÏ±â À§ÇÔ, °æ·Î Ç¥½Ã
+		// ê° nodeì˜ neighbor nodeì— ëŒ€í•œ ì •ë³´ ì…ë ¥ - ì˜†ìœ¼ë¡œ ì´ë™í•˜ê¸° ìœ„í•¨, ê²½ë¡œ í‘œì‹œ
 		n[0].addNeighbors(n[1]);
 		n[1].addNeighbors(n[0], n[2]);
 		n[2].addNeighbors(n[1], n[9]);
@@ -163,7 +166,7 @@ public class maze_10x10 {
 		n[54].addNeighbors(n[48]);
 		n[55].addNeighbors(n[52]);
 
-		new A_star_algorithm().search(n[0], n[55]); // Ãâ¹ß nodeºÎÅÍ µµÂø node±îÁöÀÇ ÃÖ´Ü °æ·Î¸¦ ±¸ÇÔ
+		new A_star_algorithm().search(n[0], n[55]); // ì¶œë°œ nodeë¶€í„° ë„ì°© nodeê¹Œì§€ì˜ ìµœë‹¨ ê²½ë¡œë¥¼ êµ¬í•¨
 		return coordinate;
 	}
 }

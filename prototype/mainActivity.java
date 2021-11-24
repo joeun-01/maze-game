@@ -35,7 +35,7 @@ public class mainActivity extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				JButton btn1 = (JButton) e.getSource();
-				UIActivity1 goMaze = new UIActivity1(btn1);
+				UIactivity1 goMaze = new UIactivity1(btn1);
 			}
 			
 		});
@@ -44,7 +44,7 @@ public class mainActivity extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				JButton btn2 = (JButton) e.getSource();
-				UIActivity1 goMaze = new UIActivity1(btn2);
+				UIactivity1 goMaze = new UIactivity1(btn2);
 			}
 		});
 		
@@ -52,7 +52,7 @@ public class mainActivity extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				JButton btn3 = (JButton) e.getSource();
-				UIActivity1 goMaze = new UIActivity1(btn3);
+				UIactivity1 goMaze = new UIactivity1(btn3);
 			}
 			
 		});

@@ -12,24 +12,9 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class mainActivity extends JFrame{
+	JButton Level1, Level2, Level3;
+	
 	public mainActivity() {
-		/*
-		int level;
-		Scanner keyboard = new Scanner(System.in);
-		level = keyboard.nextInt();
-		if (level == 1) {
-			maze_5x5 five = new maze_5x5();
-			five.maze_info();
-		}
-		else if(level == 2) {
-			maze_7x7 seven = new maze_7x7();
-			seven.maze_info();
-		}
-		else if(level == 3) {
-			maze_10x10 ten = new maze_10x10();
-			ten.maze_info();
-		}
-		*/
 		
 		JPanel p = new JPanel();
 		p.setLayout(null);
@@ -47,10 +32,27 @@ public class mainActivity extends JFrame{
 		Level3.setBounds(100, 500, 100, 100);
 		
 		Level1.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				main2Activity goMaze = new main2Activity();
+				JButton btn1 = (JButton) e.getSource();
+				main2Activity goMaze = new main2Activity(btn1);
+			}
+			
+		});
+		
+		Level2.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JButton btn2 = (JButton) e.getSource();
+				main2Activity goMaze = new main2Activity(btn2);
+			}
+		});
+		
+		Level3.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JButton btn3 = (JButton) e.getSource();
+				main2Activity goMaze = new main2Activity(btn3);
 			}
 			
 		});

@@ -66,6 +66,8 @@ public class mainActivity extends JFrame{
 		setSize(600, 500);
 		p.setBackground(Color.white);
 		setVisible(true);
+		setResizable(false);
+		setLocationRelativeTo(null);
 
 	}
 	

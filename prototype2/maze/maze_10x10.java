@@ -1,7 +1,9 @@
 package maze;
 
 public class maze_10x10 {
+	
 	public int[][] maze_info() {
+		
 		Node[] n = new Node[56];
 		for (int i = 0; i < n.length; i++) {
 			n[i] = new Node();
@@ -18,7 +20,8 @@ public class maze_10x10 {
 		 * X | | | | 8 - X 19 - 22 - 30 X 41 - 44 - 52 - 55
 		 * 
 		 */
-
+		
+		
 		// 각 node의 좌표 설정
 		n[0].setXY(0, 0);
 		n[1].setXY(0, 1);
@@ -85,6 +88,8 @@ public class maze_10x10 {
 		n[53].setXY(9, 1);
 		n[54].setXY(9, 4);
 		n[55].setXY(9, 9);
+		
+
 
 		int[][] coordinate = new int[10][10]; // 미로 배열로 나타내기
 
@@ -95,6 +100,7 @@ public class maze_10x10 {
 		}
 
 		for (int i = 0; i < 56; i++) {
+			//coordinate[INIT.node3[i].getY()][INIT.node3[i].getX()] = 0;
 			coordinate[n[i].getY()][n[i].getX()] = 0; // 길을 0으로 표시
 		}
 
@@ -109,7 +115,8 @@ public class maze_10x10 {
 			System.out.println(" ");
 		}
 		*/
-
+		
+		
 		// 각 node의 neighbor node에 대한 정보 입력 - 옆으로 이동하기 위함, 경로 표시
 		n[0].addNeighbors(n[1]);
 		n[1].addNeighbors(n[0], n[2]);
@@ -167,7 +174,8 @@ public class maze_10x10 {
 		n[53].addNeighbors(n[45]);
 		n[54].addNeighbors(n[48]);
 		n[55].addNeighbors(n[52]);
-
+		
+		
 		new A_star_algorithm().search(n[0], n[55], 10); // 출발 node부터 도착 node까지의 최단 경로를 구함
 		
 		return coordinate;

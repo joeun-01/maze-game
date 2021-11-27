@@ -106,8 +106,8 @@ public class UI3 extends JFrame {
 		button.addActionListener(new ActionListener() {
 			
 			void Wincheck() {
-				if(INIT.xpos == 9 && INIT.ypos == 9) { // x ÀÇ À§Ä¡ 5Çà 8 ¿­
-					JOptionPane.showMessageDialog(null, "Å»Ãâ¼º°ø");
+				if(INIT.xpos == 9 && INIT.ypos == 9) { // x ï¿½ï¿½ ï¿½ï¿½Ä¡ 5ï¿½ï¿½ 8 ï¿½ï¿½
+					JOptionPane.showMessageDialog(null, "Å»ï¿½â¼ºï¿½ï¿½");
 					System.exit(0);
 				}
 			}
@@ -116,13 +116,18 @@ public class UI3 extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				JButton btn = (JButton) e.getSource();
 				String check = btn.getText();
+				String X = null;
+	            String Y = null;
 				switch(check) {
 				case "^":
 					if(INIT.ypos - 1 >= 0) {
 						if(INIT.mazeL3[INIT.ypos - 1][INIT.xpos] == 0 || INIT.mazeL3[INIT.ypos - 1][INIT.xpos - 1] == 3) {
 							INIT.mazeL3[INIT.ypos][INIT.xpos] = 0;
 							INIT.mazeL3[--INIT.ypos][INIT.xpos] = 2;
+							X = String.valueOf(INIT.xpos);
+		                     Y = String.valueOf(INIT.ypos);
 						}
+						display.append("(" + X + ", " + Y + ")\n");
 					}
 					break;
 				case "v":
@@ -130,7 +135,10 @@ public class UI3 extends JFrame {
 						if(INIT.mazeL3[INIT.ypos + 1][INIT.xpos] ==0 || INIT.mazeL3[INIT.ypos + 1][INIT.xpos] == 3) {
 							INIT.mazeL3[INIT.ypos][INIT.xpos] = 0;
 							INIT.mazeL3[++INIT.ypos][INIT.xpos] = 2;
+							X = String.valueOf(INIT.xpos);
+		                     Y = String.valueOf(INIT.ypos);
 						}
+						display.append("(" + X + ", " + Y + ")\n");
 					}
 					break;
 				case "<":
@@ -138,7 +146,10 @@ public class UI3 extends JFrame {
 						if(INIT.mazeL3[INIT.ypos][INIT.xpos - 1] == 0 || INIT.mazeL3[INIT.ypos][INIT.xpos - 1] == 3) {
 							INIT.mazeL3[INIT.ypos][INIT.xpos] = 0;
 							INIT.mazeL3[INIT.ypos][--INIT.xpos] = 2;
+							X = String.valueOf(INIT.xpos);
+		                     Y = String.valueOf(INIT.ypos);
 						}
+						display.append("(" + X + ", " + Y + ")\n");
 					}
 					break;
 				case ">":
@@ -146,7 +157,10 @@ public class UI3 extends JFrame {
 						if(INIT.mazeL3[INIT.ypos][INIT.xpos + 1] == 0 || INIT.mazeL3[INIT.ypos][INIT.xpos + 1] == 3) {
 							INIT.mazeL3[INIT.ypos][INIT.xpos] = 0;
 							INIT.mazeL3[INIT.ypos][++INIT.xpos] = 2;
+							X = String.valueOf(INIT.xpos);
+		                     Y = String.valueOf(INIT.ypos);
 						}
+						display.append("(" + X + ", " + Y + ")\n");
 					}
 					break;
 				}

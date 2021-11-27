@@ -12,30 +12,34 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class mainActivity extends JFrame{
-	JButton Level1, Level2, Level3;
+	myButton Level1, Level2, Level3;
 	
 	public mainActivity() {
 		
 		JPanel p = new JPanel();
 		p.setLayout(null);
 		
-		JButton Level1 = new JButton("Level 1");
-		JButton Level2 = new JButton("Level 2");
-		JButton Level3 = new JButton("Level 3");
+		JLabel label = new JLabel(new ImageIcon("C:\\Users\\Gihyun\\eclipse-workspace\\algorithms_maze\\src\\maze.png"));
+		p.add(label);
 		
-		add(Level1);
-		add(Level2);
-		add(Level3);
+		Level1 = new myButton("Level 1");
+		Level2 = new myButton("Level 2");
+		Level3 = new myButton("Level 3");
 		
-		Level1.setBounds(100, 100, 100, 100);
-		Level2.setBounds(100, 300, 100, 100);
-		Level3.setBounds(100, 500, 100, 100);
+		p.add(Level1);
+		p.add(Level2);
+		p.add(Level3);
+		
+		label.setBounds(50, 0, 500, 300);
+		Level1.setBounds(75, 350, 100, 50);
+		Level2.setBounds(225, 350, 100, 50);
+		Level3.setBounds(375, 350, 100, 50);
 		
 		Level1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				JButton btn1 = (JButton) e.getSource();
-				UIactivity1 goMaze = new UIactivity1(btn1);
+				main2Activity goMaze = new main2Activity(btn1);
 			}
 			
 		});
@@ -44,7 +48,7 @@ public class mainActivity extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				JButton btn2 = (JButton) e.getSource();
-				UIactivity1 goMaze = new UIactivity1(btn2);
+				main2Activity goMaze = new main2Activity(btn2);
 			}
 		});
 		
@@ -52,14 +56,17 @@ public class mainActivity extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				JButton btn3 = (JButton) e.getSource();
-				UIactivity1 goMaze = new UIactivity1(btn3);
+				main2Activity goMaze = new main2Activity(btn3);
 			}
 			
 		});
 		
-		add(p);
-		setSize(800, 700);
+		add(p, BorderLayout.CENTER);
+		setTitle("MAZE");
+		setSize(600, 500);
+		p.setBackground(Color.white);
 		setVisible(true);
+
 	}
 	
 	public static void main(String[] args) {

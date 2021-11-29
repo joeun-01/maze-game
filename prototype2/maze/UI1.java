@@ -29,7 +29,7 @@ public class UI1 extends JFrame {
    //private ImageIcon runner, door;
    
    public UI1() {
-      background = new ImageIcon("C:\\Users\\Gihyun\\eclipse-workspace\\algorithms_maze\\src\\background.png");
+      background = new ImageIcon("C:\\Users\\jjy02\\eclipse-workspace2\\Algorithm\\src\\background.png");
       panel1 = new JPanel() {
 			public void paintComponent(Graphics g) {
 				g.drawImage(background.getImage(),0,0,null);
@@ -99,6 +99,7 @@ public class UI1 extends JFrame {
       //runner = new ImageIcon("C:\\Users\\Gihyun\\eclipse-workspace\\algorithms_maze\\src\\running.png");
       //Image runImg = runner.getImage();
       
+	   // draw miro with GUI
       for (int y = 1; y <= INIT.MAZE_BOARD_HEIGHT1;y++) {
          for (int x = 1; x <= INIT.MAZE_BOARD_WIDTH1;x++) {
             if(INIT.mazeL1[y-1][x-1] == 1) { // wall
@@ -110,13 +111,13 @@ public class UI1 extends JFrame {
                //g.drawImage(runImg,20,20,this);
                g.fillRect(x*50+25, y*50 + 20, 50, 50);
             }
-            else if(INIT.mazeL1[y-1][x-1] == 2) {
+            else if(INIT.mazeL1[y-1][x-1] == 2) {  // start point
                g.setColor(Color.blue);
                g.fillRect(x*50+25, y*50 + 20, 50, 50);
                INIT.xpos = x-1;
                INIT.ypos = y-1;
             }
-            else if(INIT.mazeL1[y-1][x-1] == 3) {
+            else if(INIT.mazeL1[y-1][x-1] == 3) {  // end point
                g.setColor(Color.RED);
                g.fillRect(x*50+25, y*50+20, 50, 50);
             }
@@ -138,20 +139,21 @@ public class UI1 extends JFrame {
       button.addActionListener(new ActionListener() {
          
          void Wincheck() {
-            if(INIT.xpos == 4 && INIT.ypos == 4) { // x 狼 困摹 5青 8 凯
-               //JOptionPane.showMessageDialog(null, "呕免己傍");
-               display.append("呕免 己傍!\n");
+            if(INIT.xpos == 4 && INIT.ypos == 4) { // end point coordinate
+               //JOptionPane.showMessageDialog(null, "韮堨稖靹标车");
+               display.append("韮堨稖 靹标车!\n");
             }
          }
          
          @Override
+         // Move using the direction key
          public void actionPerformed(ActionEvent e) {
             JButton btn = (JButton) e.getSource();
             String check = btn.getText();
             String X = null;
             String Y = null;
             switch(check) {
-            case "^":
+            case "^":  // up
                if(INIT.ypos - 1 >= 0) {
                   if(INIT.mazeL1[INIT.ypos - 1][INIT.xpos] == 0 || INIT.mazeL1[INIT.ypos - 1][INIT.xpos - 1] == 3) {
                      INIT.mazeL1[INIT.ypos][INIT.xpos] = 0;
@@ -160,9 +162,8 @@ public class UI1 extends JFrame {
                      Y = String.valueOf(INIT.ypos);
                   }
                }
-               display.append("(" + X + ", " + Y + ")\n");
                break;
-            case "v":
+            case "v":  // down
                if(INIT.ypos + 1 < INIT.MAZE_BOARD_HEIGHT1) {
                   if(INIT.mazeL1[INIT.ypos + 1][INIT.xpos] ==0 || INIT.mazeL1[INIT.ypos + 1][INIT.xpos] == 3) {
                      INIT.mazeL1[INIT.ypos][INIT.xpos] = 0;
@@ -171,9 +172,8 @@ public class UI1 extends JFrame {
                      Y = String.valueOf(INIT.ypos);
                   }
                }
-               display.append("(" + X + ", " + Y + ")\n");
                break;
-            case "<":
+            case "<":  // left
                if(INIT.xpos - 1 >= 0) {
                   if(INIT.mazeL1[INIT.ypos][INIT.xpos - 1] == 0 || INIT.mazeL1[INIT.ypos][INIT.xpos - 1] == 3) {
                      INIT.mazeL1[INIT.ypos][INIT.xpos] = 0;
@@ -182,9 +182,8 @@ public class UI1 extends JFrame {
                      Y = String.valueOf(INIT.ypos);
                   }
                }
-               display.append("(" + X + ", " + Y + ")\n");
                break;
-            case ">":
+            case ">":  // right
                if(INIT.xpos + 1 < INIT.MAZE_BOARD_WIDTH1) {
                   if(INIT.mazeL1[INIT.ypos][INIT.xpos + 1] == 0 || INIT.mazeL1[INIT.ypos][INIT.xpos + 1] == 3) {
                      INIT.mazeL1[INIT.ypos][INIT.xpos] = 0;
@@ -193,17 +192,16 @@ public class UI1 extends JFrame {
                      Y = String.valueOf(INIT.ypos);
                   }
                }
-               display.append("(" + X + ", " + Y + ")\n");
                break;
             }
-            
+            display.append("(" + X + ", " + Y + ")\n");  // show current coordinate in text field
             repaint();
             Wincheck();
             //display.append();
          }
       });
    }
-   public void answerClick(JButton button) {
+   public void answerClick(JButton button) {  // answer window
 		button.addActionListener(new ActionListener() {
 						
 			//@SuppressWarnings("unused")

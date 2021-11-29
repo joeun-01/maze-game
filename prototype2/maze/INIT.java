@@ -1,6 +1,7 @@
 package maze;
 
 public class INIT {
+	// maze size
 	static int MAZE_BOARD_HEIGHT1 = 5;
 	static int MAZE_BOARD_WIDTH1 = 5;
 	static int MAZE_BOARD_HEIGHT2 = 7;
@@ -11,6 +12,7 @@ public class INIT {
 	static int xpos;
 	static int ypos;
 	
+	// maze information
 	static maze_5x5 maze1 = new maze_5x5();
 	static maze_7x7 maze2 = new maze_7x7();
 	static maze_10x10 maze3 = new maze_10x10();

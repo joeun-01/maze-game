@@ -3,10 +3,10 @@ package maze;
 public class maze_7x7 {
 
 	public int[][] maze_info() {
-		Node[] n = new Node[26]; // 총 13개의 node
+		Node[] n = new Node[26];
 		for (int i = 0; i < n.length; i++) {
 			n[i] = new Node();
-			n[i].setData(i); // node 0번부터 26번까지 할당
+			n[i].setData(i);  // assign node 1 ~ 26
 		}
 		
 		/*
@@ -31,7 +31,7 @@ public class maze_7x7 {
          
          */
 
-		// 각 node의 좌표 설정
+		// set node's coordinate
 		n[0].setXY(0, 1);
 		n[1].setXY(0, 2);
 		n[2].setXY(0, 3);
@@ -59,7 +59,7 @@ public class maze_7x7 {
 		n[24].setXY(6, 5);
 		n[25].setXY(6, 6);
 
-		int[][] coordinate = new int[7][7]; // 미로 배열로 나타내기
+		int[][] coordinate = new int[7][7];  // show miro with array
 
 		for (int i = 0; i < 7; i++) {
 			for (int j = 0; j < 7; j++) {
@@ -68,13 +68,13 @@ public class maze_7x7 {
 		}
 
 		for (int i = 0; i < 26; i++) {
-			coordinate[n[i].getY()][n[i].getX()] = 0; // 길을 0으로 표시
+			coordinate[n[i].getY()][n[i].getX()] = 0;  // mark the way 0
 		}
 		
 		coordinate[1][0] = 2;
 		coordinate[6][6] = 3;
 
-		// 각 node의 neighbor node에 대한 정보 입력 - 옆으로 이동하기 위함, 경로 표시
+		// add neighbor node - to move and show path
 		n[0].addNeighbors(n[1]);
 		n[1].addNeighbors(n[0], n[2]);
 		n[2].addNeighbors(n[1], n[3], n[4]);
@@ -100,7 +100,7 @@ public class maze_7x7 {
 		n[24].addNeighbors(n[21], n[25]);
 		n[25].addNeighbors(n[24]);
 
-		new A_star_algorithm().search(n[0], n[25], 7); // 출발 node부터 도착 node까지의 최단 경로를 구함
+		new A_star_algorithm().search(n[0], n[25], 7);  // find the shortest path from node 0 to 55
 		
 		return coordinate;
 	}

@@ -3,10 +3,10 @@ package maze;
 public class maze_7x7 {
 
 	public int[][] maze_info() {
-		Node[] n = new Node[26]; // √— 13∞≥¿« node
+		Node[] n = new Node[26]; // Ï¥ù 13Í∞úÏùò node
 		for (int i = 0; i < n.length; i++) {
 			n[i] = new Node();
-			n[i].setData(i); // node 0π¯∫Œ≈Õ 26π¯±Ó¡ˆ «“¥Á
+			n[i].setData(i); // node 0Î≤àÎ∂ÄÌÑ∞ 26Î≤àÍπåÏßÄ Ìï†Îãπ
 		}
 		
 		/*
@@ -31,7 +31,7 @@ public class maze_7x7 {
          
          */
 
-		// ∞¢ node¿« ¡¬«• º≥¡§
+		// Í∞Å nodeÏùò Ï¢åÌëú ÏÑ§Ï†ï
 		n[0].setXY(0, 1);
 		n[1].setXY(0, 2);
 		n[2].setXY(0, 3);
@@ -59,7 +59,7 @@ public class maze_7x7 {
 		n[24].setXY(6, 5);
 		n[25].setXY(6, 6);
 
-		int[][] coordinate = new int[7][7]; // πÃ∑Œ πËø≠∑Œ ≥™≈∏≥ª±‚
+		int[][] coordinate = new int[7][7]; // ÎØ∏Î°ú Î∞∞Ïó¥Î°ú ÎÇòÌÉÄÎÇ¥Í∏∞
 
 		for (int i = 0; i < 7; i++) {
 			for (int j = 0; j < 7; j++) {
@@ -68,22 +68,13 @@ public class maze_7x7 {
 		}
 
 		for (int i = 0; i < 26; i++) {
-			coordinate[n[i].getY()][n[i].getX()] = 0; // ±Ê¿ª 0¿∏∑Œ «•Ω√
+			coordinate[n[i].getY()][n[i].getX()] = 0; // Í∏∏ÏùÑ 0ÏúºÎ°ú ÌëúÏãú
 		}
 		
 		coordinate[1][0] = 2;
 		coordinate[6][6] = 3;
-		
-		/*
-		for (int i = 0; i < 7; i++) { // √‚∑¬
-			for (int j = 0; j < 7; j++) {
-				System.out.print(coordinate[i][j] + " ");
-			}
-			System.out.println(" ");
-		}
-		*/
 
-		// ∞¢ node¿« neighbor nodeø° ¥Î«— ¡§∫∏ ¿‘∑¬ - ø∑¿∏∑Œ ¿Ãµø«œ±‚ ¿ß«‘, ∞Ê∑Œ «•Ω√
+		// Í∞Å nodeÏùò neighbor nodeÏóê ÎåÄÌïú Ï†ïÎ≥¥ ÏûÖÎ†• - ÏòÜÏúºÎ°ú Ïù¥ÎèôÌïòÍ∏∞ ÏúÑÌï®, Í≤ΩÎ°ú ÌëúÏãú
 		n[0].addNeighbors(n[1]);
 		n[1].addNeighbors(n[0], n[2]);
 		n[2].addNeighbors(n[1], n[3], n[4]);
@@ -109,7 +100,7 @@ public class maze_7x7 {
 		n[24].addNeighbors(n[21], n[25]);
 		n[25].addNeighbors(n[24]);
 
-		new A_star_algorithm().search(n[0], n[25], 7); // √‚πﬂ node∫Œ≈Õ µµ¬¯ node±Ó¡ˆ¿« √÷¥‹ ∞Ê∑Œ∏¶ ±∏«‘
+		new A_star_algorithm().search(n[0], n[25], 7); // Ï∂úÎ∞ú nodeÎ∂ÄÌÑ∞ ÎèÑÏ∞© nodeÍπåÏßÄÏùò ÏµúÎã® Í≤ΩÎ°úÎ•º Íµ¨Ìï®
 		
 		return coordinate;
 	}

@@ -19,7 +19,7 @@ public class mainActivity extends JFrame{
 		JPanel p = new JPanel();
 		p.setLayout(null);
 		
-		JLabel label = new JLabel(new ImageIcon("C:\\Users\\Gihyun\\eclipse-workspace\\algorithms_maze\\src\\maze.png"));
+		JLabel label = new JLabel(new ImageIcon("C:\\Users\\jjy02\\eclipse-workspace2\\Algorithm\\src\\maze.png"));
 		p.add(label);
 		
 		Level1 = new myButton("Level 1");
@@ -37,26 +37,26 @@ public class mainActivity extends JFrame{
 		
 		Level1.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) {  // show level 1 maze
 				JButton btn1 = (JButton) e.getSource();
-				UIactivity1 goMaze = new UIactivity1(btn1);
+				UIactivity goMaze = new UIactivity(btn1);
 			}
 			
 		});
 		
 		Level2.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) {  // show level 2 maze
 				JButton btn2 = (JButton) e.getSource();
-				UIactivity1 goMaze = new UIactivity1(btn2);
+				UIactivity goMaze = new UIactivity(btn2);
 			}
 		});
 		
 		Level3.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) {  // show level 3 maze
 				JButton btn3 = (JButton) e.getSource();
-				UIactivity1 goMaze = new UIactivity1(btn3);
+				UIactivity goMaze = new UIactivity(btn3);
 			}
 			
 		});

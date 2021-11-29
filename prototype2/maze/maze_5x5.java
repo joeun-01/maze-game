@@ -2,10 +2,10 @@ package maze;
 
 public class maze_5x5 {
 	public int[][] maze_info() {
-		Node[] n = new Node[12]; // √— 13∞≥¿« node
+		Node[] n = new Node[12]; // Ï¥ù 13Í∞úÏùò node
 		for (int i = 0; i < n.length; i++) {
 			n[i] = new Node();
-			n[i].setData(i); // node 0π¯∫Œ≈Õ 12π¯±Ó¡ˆ «“¥Á
+			n[i].setData(i); // node 0Î≤àÎ∂ÄÌÑ∞ 12Î≤àÍπåÏßÄ Ìï†Îãπ
 		}
 
 		/*
@@ -26,7 +26,7 @@ public class maze_5x5 {
          
          */
 		
-		// ∞¢ node¿« ¡¬«• º≥¡§
+		// Í∞Å nodeÏùò Ï¢åÌëú ÏÑ§Ï†ï
 		n[0].setXY(0, 1);
 		n[1].setXY(1, 1);
 		n[2].setXY(1, 2);
@@ -40,7 +40,7 @@ public class maze_5x5 {
 		n[10].setXY(3, 4);
 		n[11].setXY(4, 4);
 
-		int[][] coordinate = new int[5][5]; // πÃ∑Œ πËø≠∑Œ ≥™≈∏≥ª±‚
+		int[][] coordinate = new int[5][5]; // ÎØ∏Î°ú Î∞∞Ïó¥Î°ú ÎÇòÌÉÄÎÇ¥Í∏∞
 
 		for (int i = 0; i < 5; i++) {
 			for (int j = 0; j < 5; j++) {
@@ -49,22 +49,13 @@ public class maze_5x5 {
 		}
 
 		for (int i = 0; i < 12; i++) {
-			coordinate[n[i].getY()][n[i].getX()] = 0; // ±Ê¿ª 0¿∏∑Œ «•Ω√
+			coordinate[n[i].getY()][n[i].getX()] = 0; // Í∏∏ÏùÑ 0ÏúºÎ°ú ÌëúÏãú
 		}
 		
 		coordinate[1][0] = 2;
 		coordinate[4][4] = 3;
 
-		/*
-		for (int i = 0; i < 5; i++) { // √‚∑¬
-			for (int j = 0; j < 5; j++) {
-				System.out.print(coordinate[i][j] + " ");
-			}
-			System.out.println(" ");
-		}
-		*/
-
-		// ∞¢ node¿« neighbor nodeø° ¥Î«— ¡§∫∏ ¿‘∑¬ - ø∑¿∏∑Œ ¿Ãµø«œ±‚ ¿ß«‘, ∞Ê∑Œ «•Ω√
+		// Í∞Å nodeÏùò neighbor nodeÏóê ÎåÄÌïú Ï†ïÎ≥¥ ÏûÖÎ†• - ÏòÜÏúºÎ°ú Ïù¥ÎèôÌïòÍ∏∞ ÏúÑÌï®, Í≤ΩÎ°ú ÌëúÏãú
 		n[0].addNeighbors(n[1]);
 		n[1].addNeighbors(n[0], n[2]);
 		n[2].addNeighbors(n[1], n[3], n[5]);
@@ -78,7 +69,7 @@ public class maze_5x5 {
 		n[10].addNeighbors(n[6], n[11]);
 		n[11].addNeighbors(n[10]);
 
-		new A_star_algorithm().search(n[0], n[11], 5); // √‚πﬂ node∫Œ≈Õ µµ¬¯ node±Ó¡ˆ¿« √÷¥‹ ∞Ê∑Œ∏¶ ±∏«‘
+		new A_star_algorithm().search(n[0], n[11], 5); // Ï∂úÎ∞ú nodeÎ∂ÄÌÑ∞ ÎèÑÏ∞© nodeÍπåÏßÄÏùò ÏµúÎã® Í≤ΩÎ°úÎ•º Íµ¨Ìï®
 		
 		return coordinate;
 		

@@ -1,13 +1,10 @@
 package maze;
 
-import javax.swing.*;
-import javax.swing.event.*;
 import javax.swing.Action;
 import javax.swing.Icon;
 import javax.swing.JButton;
 
 import java.awt.*;
-import java.awt.event.*;
 
 @SuppressWarnings("serial")
 public class myButton extends JButton{
@@ -47,10 +44,10 @@ public class myButton extends JButton{
 		Graphics2D graphics = (Graphics2D) g;
 		
 		graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		if (getModel().isArmed()) { // 버튼작동 준비상태
+		if (getModel().isArmed()) { // Ready to operate the button
 			graphics.setColor(getBackground().darker());
 		}
-		else if (getModel().isRollover()) { // 마우스 포인터가 버튼 
+		else if (getModel().isRollover()) { // The mouse pointer is the button. 
 			graphics.setColor(getBackground().brighter());
 		}
 		else {

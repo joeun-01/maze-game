@@ -24,7 +24,7 @@ public class UI2 extends JFrame {
 	private JTextArea display;
 	
 	public UI2() {
-		background = new ImageIcon("C:\\Users\\Gihyun\\eclipse-workspace\\algorithms_maze\\src\\background.png");		
+		background = new ImageIcon("C:\\Users\\jjy02\\eclipse-workspace2\\Algorithm\\src\\background.png");		
 		
 		panel1 = new JPanel() {
 			public void paintComponent(Graphics g) {
@@ -92,7 +92,8 @@ public class UI2 extends JFrame {
 		DrawMiro(g);
 	}
 	
-	public void DrawMiro(Graphics g) {
+	public void DrawMiro(Graphics g) {  
+		// draw miro with GUI
 		for (int y = 1; y <= INIT.MAZE_BOARD_HEIGHT2;y++) {
 			for (int x = 1; x <= INIT.MAZE_BOARD_WIDTH2;x++) {
 				if(INIT.mazeL2[y-1][x-1] == 1) { // wall
@@ -104,13 +105,13 @@ public class UI2 extends JFrame {
 					g.fillRect(x*35 + 40, y*35 + 30, 35, 35);
 
 				}
-				else if(INIT.mazeL2[y-1][x-1] == 2) {
+				else if(INIT.mazeL2[y-1][x-1] == 2) {  // start point
 					g.setColor(Color.BLUE);
 					g.fillRect(x*35 + 40, y*35 + 30, 35, 35);
 					INIT.xpos = x-1;
 					INIT.ypos = y-1;
 				}
-				else if(INIT.mazeL2[y-1][x-1] == 3) {
+				else if(INIT.mazeL2[y-1][x-1] == 3) {  // end point
 					g.setColor(Color.RED);
 					g.fillRect(x*35+40, y*35+30, 35, 35);
 				}
@@ -132,14 +133,15 @@ public class UI2 extends JFrame {
 		button.addActionListener(new ActionListener() {
 			
 			void Wincheck() {
-				if(INIT.xpos == 6 && INIT.ypos == 6) { // x 狼 困摹 5青 8 凯
-					//JOptionPane.showMessageDialog(null, "呕免己傍");
+				if(INIT.xpos == 6 && INIT.ypos == 6) { // position of end point
+					//JOptionPane.showMessageDialog(null, "韮堨稖靹标车");
 					//System.exit(0);
-					display.append("呕免 己傍!\n");
+					display.append("韮堨稖 靹标车!\n");
 				}
 			}
 			
 			@Override
+			// Move using the direction key
 			public void actionPerformed(ActionEvent e) {
 				JButton btn = (JButton) e.getSource();
 				String check = btn.getText();
@@ -147,7 +149,7 @@ public class UI2 extends JFrame {
 				String Y = null;
 				
 				switch(check) {
-				case "^":
+				case "^":  // up
 					if(INIT.ypos - 1 >= 0) {
 						if(INIT.mazeL2[INIT.ypos - 1][INIT.xpos] == 0 || INIT.mazeL2[INIT.ypos - 1][INIT.xpos - 1] == 3) {
 							INIT.mazeL2[INIT.ypos][INIT.xpos] = 0;
@@ -156,9 +158,8 @@ public class UI2 extends JFrame {
 		                    Y = String.valueOf(INIT.ypos);
 						}
 					}
-					display.append("(" + X + ", " + Y + ")\n");
 					break;
-				case "v":
+				case "v":  // down
 					if(INIT.ypos + 1 < INIT.MAZE_BOARD_HEIGHT2) {
 						if(INIT.mazeL2[INIT.ypos + 1][INIT.xpos] ==0 || INIT.mazeL2[INIT.ypos + 1][INIT.xpos] == 3) {
 							INIT.mazeL2[INIT.ypos][INIT.xpos] = 0;
@@ -167,9 +168,8 @@ public class UI2 extends JFrame {
 		                     Y = String.valueOf(INIT.ypos);
 						}
 					}
-					display.append("(" + X + ", " + Y + ")\n");
 					break;
-				case "<":
+				case "<":  // left
 					if(INIT.xpos - 1 >= 0) {
 						if(INIT.mazeL2[INIT.ypos][INIT.xpos - 1] == 0 || INIT.mazeL2[INIT.ypos][INIT.xpos - 1] == 3) {
 							INIT.mazeL2[INIT.ypos][INIT.xpos] = 0;
@@ -178,9 +178,8 @@ public class UI2 extends JFrame {
 		                     Y = String.valueOf(INIT.ypos);
 						}
 					}
-					display.append("(" + X + ", " + Y + ")\n");
 					break;
-				case ">":
+				case ">":  // right
 					if(INIT.xpos + 1 < INIT.MAZE_BOARD_WIDTH2) {
 						if(INIT.mazeL2[INIT.ypos][INIT.xpos + 1] == 0 || INIT.mazeL2[INIT.ypos][INIT.xpos + 1] == 3) {
 							INIT.mazeL2[INIT.ypos][INIT.xpos] = 0;
@@ -189,16 +188,16 @@ public class UI2 extends JFrame {
 		                     Y = String.valueOf(INIT.ypos);
 						}
 					}
-					display.append("(" + X + ", " + Y + ")\n");
 					break;
 				}
+				display.append("(" + X + ", " + Y + ")\n");  // show current coordinate in text field
 				repaint();
 				Wincheck();
 			}
 			
 		});
 	}
-	public void answerClick(JButton button) {
+	public void answerClick(JButton button) {  // answer window
 		button.addActionListener(new ActionListener() {
 						
 			//@SuppressWarnings("unused")

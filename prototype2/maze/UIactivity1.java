@@ -6,9 +6,9 @@ import javax.swing.event.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class UIactivity1 extends JFrame {
+public class UIactivity extends JFrame {
 	
-	public UIactivity1(JButton button)  {
+	public UIactivity(JButton button)  {
 		String check = button.getText();
 		
 		EventQueue.invokeLater(new Runnable() {

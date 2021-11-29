@@ -7,12 +7,12 @@ class Node {
 
 	private Node parent;
 	private ArrayList<Node> neighbors; // neighbor node
-	private int x; // x 좌표
-	private int y; // y 좌표
+	private int x; // x-coordinate
+	private int y; // y-coordinate
 	private Object data;
 
 	public Node() {
-		neighbors = new ArrayList<Node>(); // node를 만들면서 해당 node의 neighbor node에 대한 정보를 담을 수 있도록 해줌
+		neighbors = new ArrayList<Node>(); // create node object and put information of node
 		data = new Object();
 	}
 
@@ -42,7 +42,7 @@ class Node {
 		this.neighbors = neighbors;
 	}
 
-	public void addNeighbor(Node node) { // 해당 node의 neighbor node들을 추가
+	public void addNeighbor(Node node) { // add neighbor node
 		this.neighbors.add(node);
 	}
 
@@ -62,7 +62,7 @@ class Node {
 		return x;
 	}
 
-	public void setX(int x) { // x값 설정
+	public void setX(int x) { // set X-coordinate
 		this.x = x;
 	}
 
@@ -70,11 +70,11 @@ class Node {
 		return y;
 	}
 
-	public void setY(int y) { // y값 설정
+	public void setY(int y) { // set Y-coordinate
 		this.y = y;
 	}
 
-	public void setXY(int x, int y) { // 각 node의 좌표 설정
+	public void setXY(int x, int y) { // set X, Y
 		this.x = x;
 		this.y = y;
 	}

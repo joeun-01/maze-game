@@ -3,17 +3,21 @@ package maze;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+package maze;
+
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.PriorityQueue;
 
 public class A_star_algorithm {
 
-    private PriorityQueue<Node> openList;  // 앞으로 방문해야할 node
-    private ArrayList<Node> closedList;  // 제외시킨 node
-    HashMap<Node, Integer> gMaps;  // 현재 node까지의 최단거리(비용)
-    HashMap<Node, Integer> fMaps;  // g(x) + h(x)인 최단거리, 이때 h(x)는 현재 node에서 목표 node로 가는 추정 최단거리
+    private PriorityQueue<Node> openList;  // node to visit
+    private ArrayList<Node> closedList;  // excluded node
+    HashMap<Node, Integer> gMaps;  // current node's least cost
+    HashMap<Node, Integer> fMaps;  // least cost of g(x) + h(x), h(x): estimated shortest distance from the current node to the dest node
     private int initialCapacity = 100;
-    private int distanceBetweenNodes = 1;  // node간의 거리는 1
+    private int distanceBetweenNodes = 1;  // distance between nodes is 1
 
     public A_star_algorithm() {
         gMaps = new HashMap<Node, Integer>();
@@ -22,26 +26,26 @@ public class A_star_algorithm {
         closedList = new ArrayList<Node>();
     }
 
-    public void search(Node start, Node end, int size) {  // start부터 end까지의 최단 경로 구하기
-        openList.clear();  // openlist, closedlist 초기화
+    public void search(Node start, Node end, int size) {  // find the shortest path from start to end
+        openList.clear();  // initialization
         closedList.clear();
 
-        gMaps.put(start, 0);  // 시작점 입력
-        openList.add(start);  // openlist에 시작점을 넣어줌으로써 neighbor node로 가며 최단경로 탐색 시작
+        gMaps.put(start, 0);  // put start node
+        openList.add(start);  // search start with start node
 
-        while (!openList.isEmpty()) {  // 갈 수 있는 모든 node를 지나갈 때까지 = openlist가 empty가 될 때까지
-            Node current = openList.element();  // 현재 node를 openlist에 넣어줌
-            if (current.equals(end)) {  // 현재 node가 end node이면 search 종료
+        while (!openList.isEmpty()) {  // until openlist is empty
+            Node current = openList.element();  // put current node into openlist
+            if (current.equals(end)) {  // if current node is end node, search end
                 System.out.println("Goal Reached");
-                printPath(current, size);  // current node부터 backtracking
+                printPath(current, size);  // backtracking
                 return;
             }
-            closedList.add(openList.poll());  // 방분한 node(arraylist의 맨 앞 node)를 openlist에서 빼주고 closedlist에 넣어준다
-            ArrayList<Node> neighbors = current.getNeighbors();  // neighbor node get
+            closedList.add(openList.poll());  // eliminate the visited node and put into closelist
+            ArrayList<Node> neighbors = current.getNeighbors();  // get neighbor node
 
             for (Node neighbor : neighbors) {
-                int gScore = gMaps.get(current) + distanceBetweenNodes;  // 현재 node까지의 거리와 다음 node까지의 거리를 더해줌
-                int fScore = gScore + h(neighbor, current);  // neighbor node로 갔을 때의 예상 거리를 더해줌?
+                int gScore = gMaps.get(current) + distanceBetweenNodes;  // adds the distance to the current node and next node
+                int fScore = gScore + h(neighbor, current);  // add the estimated distance when go to neighbor node
 
                 if (closedList.contains(neighbor)) {
 
@@ -70,14 +74,14 @@ public class A_star_algorithm {
         System.out.println("FAIL");
     }
 
-    private int h(Node node, Node goal) {  // 휴리스틱 함수
+    private int h(Node node, Node goal) {  // heuristic function
         int x = node.getX() - goal.getX();
         int y = node.getY() - goal.getY();
         return x * x + y * y;
     }
 
     private int[][] printPath(Node node, int size) {  // backtracking
-    	int[][] path = new int[size][size];
+    	int[][] path = new int[size][size];  // find the final path
     	
     	for(int i = 0; i < size; i++) {
     		for(int j = 0; j < size; j++) {
@@ -94,17 +98,19 @@ public class A_star_algorithm {
             //System.out.println(node.getData());
         }
         
+        /*
         for(int i = 0; i < size; i++) {
     		for(int j = 0; j < size; j++) {
     			System.out.print(path[i][j] + " ");
     		}
     		System.out.println();
     	}
+        */
         
         return path;
     }
 
-    class fCompare implements Comparator<Node> {  // 어디로 가는 게 최단경로인지 비교
+    class fCompare implements Comparator<Node> {  // compare the distance
 
         public int compare(Node o1, Node o2) {
             if (fMaps.get(o1) < fMaps.get(o2)) {
